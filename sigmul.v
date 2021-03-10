@@ -3,16 +3,15 @@
 // Copyright:  2021
 // Engineer: Chris Larsen
 // 
-// Create Date: 03/09/2021 03:50:00 PM
+// Create Date: 03/09/2021 04:03:00 PM
 // Design Name: 
 // Module Name: sigmul
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: Fifth version of the significand multiply logic. The code no
-//              longer depends on Verilog to generate adder logic. This
-//              version is probably slower than the previous version. This
-//              loss of speed is to be expected at this stage.
+// Description: Sixth version of the significand multiply logic. The code
+//              exploits the fact that the most significant bit of b will
+//              always be 1 for any case which uses the output of this module.
 // 
 // Dependencies: 
 // 
@@ -76,5 +75,5 @@ module sigmul(a, b, p);
     end
   endgenerate
 
-  adder #(NSIG) sFinal(rt[NSIG-1], ({NSIG+1{b[NSIG]}} & a), p[2*NSIG+1:NSIG]);
+  adder #(NSIG) sFinal(rt[NSIG-1], a, p[2*NSIG+1:NSIG]);
 endmodule
