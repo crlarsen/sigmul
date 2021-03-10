@@ -9,10 +9,11 @@
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: Second version of the significand multiply logic. The code
+// Description: Third version of the significand multiply logic. The code
 //              depends on Verilog to generate adder logic. This version of
 //              the code should be slightly faster than the previous version
-//              because it perform one less addition operation.
+//              because it removes all of the MUXes and by calculating the
+//              partial product for every iteration of the loop.
 // 
 // Dependencies: 
 // 
@@ -32,12 +33,11 @@ module sigmul(a, b, p);
   integer i;
   always @(a or b)
   begin
-    p = (b[0] == 1'b1) ? a : 0;
+    p = {NSIG+1{b[0]}} & a;
 
     for (i = 1; i <= NSIG; i = i + 1)
     begin
-      if (b[i] == 1'b1)
-        p = p + (a << i);
+      p = p + (({NSIG+1{b[i]}} & a) << i);
     end
   end
 endmodule
