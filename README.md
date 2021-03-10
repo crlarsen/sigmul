@@ -8,7 +8,8 @@ Code is explained in the video series [Building an FPU in Verilog](https://www.y
 See the video *Building an FPU in Verilog: Building an 11-bit Multiply*.
 
 This version of the code:
-- Builds the first version of the multiply circuit. It relies on Verilog to generate adders for each of the partial products.
+- Builds the second version of the multiply circuit. It relies on Verilog to generate adders for each of the partial products.
+- Eliminates one addition operation from the previous version.
 
 ## Manifest
 
